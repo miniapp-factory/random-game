@@ -634,3 +634,81 @@
 +Update timer for placement phase
 +
 +Reset everything cleanly
+
+# 2025-12-03 09:26:21.415047
++make the how to play a pop up where if they click the how to play button the instruction will be displayed.
++
++How to Play Wizard Duel:
++
++Phase 1: Place Your Crystals
++
++Click empty squares on your grid (left side) to place crystals
++
++You have [time] seconds to place [number] crystals
++
++Crystals will be hidden once battle begins
++
++Phase 2: Attack Enemy
++
++Click squares on enemy grid (right side) to attack
++
++HIT = Red square (destroyed enemy crystal)
++
++MISS = Gray square (empty)
++
++Enemy will attack you after each turn
++
++Win: Destroy all enemy crystals before they destroy yours
++
++Difficulty Levels:
++
++Easy: 6×6 grid, 3 crystals, AI attacks randomly
++
++Medium: 8×8 grid, 4 crystals, AI smarter
++
++Hard: 10×10 grid, 5 crystals, AI very smart
++
++Add an "X" button to close the popup
++
++Style the popup with a semi-transparent background overlay
++
++
+
+# 2025-12-03 09:26:21.416077
++make the how to play a pop up where if they click the how to play button the instruction will be displayed.
++
++How to Play Wizard Duel:
++
++Phase 1: Place Your Crystals
++
++Click empty squares on your grid (left side) to place crystals
++
++You have [time] seconds to place [number] crystals
++
++Crystals will be hidden once battle begins
++
++Phase 2: Attack Enemy
++
++Click squares on enemy grid (right side) to attack
++
++HIT = Red square (destroyed enemy crystal)
++
++MISS = Gray square (empty)
++
++Enemy will attack you after each turn
++
++Win: Destroy all enemy crystals before they destroy yours
++
++Difficulty Levels:
++
++Easy: 6×6 grid, 3 crystals, AI attacks randomly
++
++Medium: 8×8 grid, 4 crystals, AI smarter
++
++Hard: 10×10 grid, 5 crystals, AI very smart
++
++Add an "X" button to close the popup
++
++Style the popup with a semi-transparent background overlay
++
++
