@@ -98,8 +98,8 @@ export default function BattleGridGame() {
     if (difficulty === "easy") {
       idx = available[Math.floor(Math.random() * available.length)];
     } else if (difficulty === "medium") {
-      // Avoid repeating the same area: simple heuristic
-      idx = available[Math.floor(Math.random() * available.length)];
+      const filtered = lastAttackIdx !== null ? available.filter(i => i !== lastAttackIdx) : available;
+      idx = filtered.length > 0 ? filtered[Math.floor(Math.random() * filtered.length)] : available[Math.floor(Math.random() * available.length)];
     } else {
       // Hard: strategic (placeholder)
       idx = available[Math.floor(Math.random() * available.length)];
@@ -115,7 +115,7 @@ export default function BattleGridGame() {
     }
     setPlayerGrid(newGrid);
     setTurn(turn + 1);
-    // Start AI thinking timer before next attack
+    setLastAttackIdx(idx);
     // Check loss
     if (playerTowers.length === 0) {
       setStatus("You lose! All your crystals shattered.");
@@ -128,7 +128,7 @@ export default function BattleGridGame() {
   const setDifficultyAndReset = (level: "easy" | "medium" | "hard") => {
     const newGridSize = level === "easy" ? 6 : level === "medium" ? 8 : 10;
     const newTowerCount = level === "easy" ? 3 : level === "medium" ? 4 : 5;
-    const newTotalTurns = level === "easy" ? 30 : level === "medium" ? 30 : 30;
+    const newTotalTurns = 30;
     const newPlacementTime = level === "easy" ? 60 : level === "medium" ? 45 : 30;
     setDifficulty(level);
     setPhase("setup");
@@ -138,6 +138,9 @@ export default function BattleGridGame() {
     setAiGrid(Array(newGridSize * newGridSize).fill("empty"));
     setTurn(0);
     setStatus("Place your crystals on the sanctum grid");
+    setPlacementTime(newPlacementTime);
+    setPlacementTimer(newPlacementTime);
+    setLastAttackIdx(null);
     // Update constants
     GRID_SIZE = newGridSize;
     TOWER_COUNT = newTowerCount;
@@ -165,6 +168,8 @@ export default function BattleGridGame() {
     setAiGrid(Array(GRID_SIZE * GRID_SIZE).fill("empty"));
     setTurn(0);
     setStatus("Place your crystals on the sanctum grid");
+    setLastAttackIdx(null);
+    setPlacementTimer(placementTime);
   };
 
   // Cleanup timer on unmount
