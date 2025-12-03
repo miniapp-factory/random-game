@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Background from "@/components/background";
+import Modal from "@/components/ui/modal";
 
 type CellState = "empty" | "player" | "ai" | "hit" | "miss" | "destroyed";
 
@@ -19,6 +20,7 @@ export default function BattleGridGame() {
   const [aiGrid, setAiGrid] = useState<CellState[]>(Array(GRID_SIZE * GRID_SIZE).fill("empty"));
   const [turn, setTurn] = useState<number>(0);
   const [status, setStatus] = useState<string>("Place your crystals on the sanctum grid");
+  const [showHowTo, setShowHowTo] = useState<boolean>(false);
   const aiTurnTimer = useRef<NodeJS.Timeout | null>(null);
 
   // Helper to convert row/col to index
@@ -214,7 +216,34 @@ export default function BattleGridGame() {
         <Button onClick={() => setDifficultyAndReset('easy')}>Easy</Button>
         <Button onClick={() => setDifficultyAndReset('medium')}>Medium</Button>
         <Button onClick={() => setDifficultyAndReset('hard')}>Hard</Button>
+        <Button onClick={() => setShowHowTo(true)}>How to Play</Button>
       </div>
+      <Modal isOpen={showHowTo} onClose={() => setShowHowTo(false)}>
+        <div className="p-4 space-y-4">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">How to Play Wizard Duel</h2>
+            <Button variant="ghost" onClick={() => setShowHowTo(false)}>X</Button>
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-semibold">Phase 1: Place Your Crystals</h3>
+            <p>Click empty squares on your grid (left side) to place crystals.</p>
+            <p>You have <strong>{/* placeholder for time */}60</strong> seconds to place <strong>{/* placeholder for number */}3</strong> crystals.</p>
+            <p>Crystals will be hidden once battle begins.</p>
+            <h3 className="font-semibold">Phase 2: Attack Enemy</h3>
+            <p>Click squares on enemy grid (right side) to attack.</p>
+            <p>HIT = Red square (destroyed enemy crystal)</p>
+            <p>MISS = Gray square (empty)</p>
+            <p>Enemy will attack you after each turn.</p>
+            <p>Win: Destroy all enemy crystals before they destroy yours.</p>
+            <h3 className="font-semibold">Difficulty Levels</h3>
+            <ul className="list-disc list-inside">
+              <li>Easy: 6×6 grid, 3 crystals, AI attacks randomly</li>
+              <li>Medium: 8×8 grid, 4 crystals, AI smarter</li>
+              <li>Hard: 10×10 grid, 5 crystals, AI very smart</li>
+            </ul>
+          </div>
+        </div>
+      </Modal>
       <p>{status}</p>
       <div className="text-sm mt-2">
         <h2 className="font-semibold mb-1">How to Play</h2>
