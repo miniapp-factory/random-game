@@ -77,9 +77,7 @@ export default function BattleGridGame() {
       setPhase("finished");
     } else {
       // AI turn after delay
-      aiTurnTimer.current = setTimeout(() => {
-        aiAttack();
-      }, 1000);
+      aiAttack();
     }
   };
 
