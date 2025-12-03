@@ -181,6 +181,17 @@ export default function BattleGridGame() {
       <div className="relative flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold">Battle Grid Game</h1>
       <p>{status}</p>
+      <div className="text-sm mt-2">
+        <h2 className="font-semibold mb-1">How to Play</h2>
+        <ul className="list-disc list-inside space-y-1">
+          <li>During the <strong>setup</strong> phase, click on your grid to place your crystals until all are placed.</li>
+          <li>Once all crystals are placed, the AI will secretly place its crystals.</li>
+          <li>During the <strong>battle</strong> phase, click on the AI grid to cast a spell at that cell.</li>
+          <li>If you hit an enemy crystal, it is destroyed. If you miss, the cell turns blue.</li>
+          <li>Win by destroying all enemy crystals before the turn limit or before all your crystals are destroyed.</li>
+          <li>Lose if all your crystals are destroyed or the turn limit is reached.</li>
+        </ul>
+      </div>
       <div className="w-8 h-8 rounded-full mx-auto my-4" style={{backgroundColor: crystalColors[turn % crystalColors.length]}}></div>
       <div className="flex gap-8">
         <div>
