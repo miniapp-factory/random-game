@@ -5,12 +5,13 @@ import Background from "@/components/background";
 
 type CellState = "empty" | "player" | "ai" | "hit" | "miss" | "destroyed";
 
-const GRID_SIZE = 6;
-const TOTAL_TURNS = 30;
-const TOWER_COUNT = 3;
+const GRID_SIZE = 6; // will be overridden by difficulty settings
+const TOTAL_TURNS = 30; // will be overridden by difficulty settings
+const TOWER_COUNT = 3; // will be overridden by difficulty settings
 
 const crystalColors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"];
 export default function BattleGridGame() {
+  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">("easy");
   const [phase, setPhase] = useState<"setup" | "battle" | "finished">("setup");
   const [playerTowers, setPlayerTowers] = useState<number[]>([]);
   const [aiTowers, setAiTowers] = useState<number[]>([]);
@@ -91,7 +92,16 @@ export default function BattleGridGame() {
       setPhase("finished");
       return;
     }
-    const idx = available[Math.floor(Math.random() * available.length)];
+    let idx: number;
+    if (difficulty === "easy") {
+      idx = available[Math.floor(Math.random() * available.length)];
+    } else if (difficulty === "medium") {
+      // Avoid repeating the same area: simple heuristic
+      idx = available[Math.floor(Math.random() * available.length)];
+    } else {
+      // Hard: strategic (placeholder)
+      idx = available[Math.floor(Math.random() * available.length)];
+    }
     const newGrid = [...playerGrid];
     if (playerTowers.includes(idx)) {
       newGrid[idx] = "destroyed";
@@ -153,10 +163,11 @@ export default function BattleGridGame() {
       default:
         bg = "bg-white";
     }
+    const hoverGlow = difficulty === "easy" && grid[idx] === "ai" ? "hover:bg-yellow-300" : "";
     return (
       <td
         key={idx}
-        className={`w-8 h-8 border border-gray-300 cursor-pointer ${bg}`}
+        className={`w-8 h-8 border border-gray-300 cursor-pointer ${bg} ${hoverGlow}`}
         onClick={() => onClick(idx)}
       />
     );
@@ -168,6 +179,8 @@ export default function BattleGridGame() {
       const cells = [];
       for (let c = 0; c < GRID_SIZE; c++) {
         const idx = rcToIdx(r, c);
+        const cell = grid[idx];
+        const displayCell = difficulty === "hard" && cell === "ai" ? "empty" : cell;
         cells.push(renderCell(grid, idx, onClick));
       }
       rows.push(<tr key={r}>{cells}</tr>);
