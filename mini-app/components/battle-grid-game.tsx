@@ -2,13 +2,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Background from "@/components/background";
+import Background from "@/components/background";
 
 type CellState = "empty" | "player" | "ai" | "hit" | "miss" | "destroyed";
 
-const GRID_SIZE = 8;
+const GRID_SIZE = 6;
 const TOTAL_TURNS = 30;
-const TOWER_COUNT = 4;
+const TOWER_COUNT = 3;
 
+const crystalColors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"];
 export default function BattleGridGame() {
   const [phase, setPhase] = useState<"setup" | "battle" | "finished">("setup");
   const [playerTowers, setPlayerTowers] = useState<number[]>([]);
@@ -66,7 +68,7 @@ export default function BattleGridGame() {
     setAiGrid(newGrid);
     setTurn(turn + 1);
     // Check win
-    if (aiTowers.length === 1 && aiTowers.includes(idx)) {
+    if (aiTowers.length === 0) {
       setStatus("You win! All enemy crystals shattered.");
       setPhase("finished");
     } else if (turn + 1 >= TOTAL_TURNS) {
@@ -103,7 +105,7 @@ export default function BattleGridGame() {
     setPlayerGrid(newGrid);
     setTurn(turn + 1);
     // Check loss
-    if (playerTowers.length === 1 && playerTowers.includes(idx)) {
+    if (playerTowers.length === 0) {
       setStatus("You lose! All your crystals shattered.");
       setPhase("finished");
     } else if (turn + 1 >= TOTAL_TURNS) {
@@ -120,7 +122,7 @@ export default function BattleGridGame() {
     setPlayerGrid(Array(GRID_SIZE * GRID_SIZE).fill("empty"));
     setAiGrid(Array(GRID_SIZE * GRID_SIZE).fill("empty"));
     setTurn(0);
-    setStatus("Place your 4 towers");
+    setStatus("Place your crystals on the sanctum grid");
   };
 
   // Cleanup timer on unmount
@@ -180,6 +182,7 @@ export default function BattleGridGame() {
       <div className="relative flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold">Battle Grid Game</h1>
       <p>{status}</p>
+      <div className="w-8 h-8 rounded-full mx-auto my-4" style={{backgroundColor: crystalColors[turn % crystalColors.length]}}></div>
       <div className="flex gap-8">
         <div>
           <h2 className="text-lg">Your Grid</h2>
