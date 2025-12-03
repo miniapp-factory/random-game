@@ -21,6 +21,9 @@ export default function BattleGridGame() {
   const [turn, setTurn] = useState<number>(0);
   const [status, setStatus] = useState<string>("Place your crystals on the sanctum grid");
     const [showHowTo, setShowHowTo] = useState<boolean>(false);
+    const [placementTime, setPlacementTime] = useState<number>(60);
+    const [placementTimer, setPlacementTimer] = useState<number>(60);
+    const [lastAttackIdx, setLastAttackIdx] = useState<number | null>(null);
 
   // Helper to convert row/col to index
   const rcToIdx = (r: number, c: number) => r * GRID_SIZE + c;
@@ -141,6 +144,18 @@ export default function BattleGridGame() {
     TOTAL_TURNS = newTotalTurns;
   };
 
+  useEffect(() => {
+    if (phase !== "setup") return;
+    if (placementTimer <= 0) {
+      if (playerTowers.length < TOWER_COUNT) {
+        placeAITowers();
+      }
+      return;
+    }
+    const timer = setTimeout(() => setPlacementTimer(placementTimer - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [phase, placementTimer, playerTowers.length, TOWER_COUNT]);
+
   // Restart game
   const restart = () => {
     setPhase("setup");
@@ -204,8 +219,15 @@ export default function BattleGridGame() {
     <>
       <Background />
       <div className="relative flex flex-col items-center gap-4">
+        <div className="flex gap-4 mb-4">
+          <Button onClick={() => setDifficultyAndReset("easy")}>Easy</Button>
+          <Button onClick={() => setDifficultyAndReset("medium")}>Medium</Button>
+          <Button onClick={() => setDifficultyAndReset("hard")}>Hard</Button>
+          <Button onClick={() => setShowHowTo(true)}>How to Play</Button>
+        </div>
       <h1 className="text-2xl font-bold">Battle Grid Game</h1>
       <p>{status}</p>
+      {phase === "setup" && <p>Time remaining: {placementTimer}s</p>}
       <div className="w-8 h-8 rounded-full mx-auto my-4" style={{backgroundColor: crystalColors[turn % crystalColors.length]}}></div>
       <div className="flex gap-8">
         <div>
@@ -221,6 +243,32 @@ export default function BattleGridGame() {
         <Button onClick={restart}>Restart</Button>
         <span>Turn: {turn}</span>
       </div>
+      <Modal isOpen={showHowTo} onClose={() => setShowHowTo(false)}>
+        <div className="p-4 space-y-4">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">How to Play Wizard Duel</h2>
+            <Button variant="ghost" onClick={() => setShowHowTo(false)}>X</Button>
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-semibold">Phase 1: Place Your Crystals</h3>
+            <p>Click empty squares on your grid (left side) to place crystals.</p>
+            <p>You have <strong>{placementTime}</strong> seconds to place <strong>{TOWER_COUNT}</strong> crystals.</p>
+            <p>Crystals will be hidden once battle begins.</p>
+            <h3 className="font-semibold">Phase 2: Attack Enemy</h3>
+            <p>Click squares on enemy grid (right side) to attack.</p>
+            <p>HIT = Red square (destroyed enemy crystal)</p>
+            <p>MISS = Gray square (empty)</p>
+            <p>Enemy will attack you after each turn.</p>
+            <p>Win: Destroy all enemy crystals before they destroy yours.</p>
+            <h3 className="font-semibold">Difficulty Levels</h3>
+            <ul className="list-disc list-inside">
+              <li>Easy: 6×6 grid, 3 crystals, AI attacks randomly</li>
+              <li>Medium: 8×8 grid, 4 crystals, AI smarter</li>
+              <li>Hard: 10×10 grid, 5 crystals, AI very smart</li>
+            </ul>
+          </div>
+        </div>
+      </Modal>
     </div>
     </>
   );
