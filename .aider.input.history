@@ -222,3 +222,223 @@
 +```
 +
 +Generate an app logo and update the app metadata title and description.
+
+# 2025-12-03 07:38:44.796262
++A magical duel where two wizards battle from their towers. You control the Blue Wizard, and an AI controls the Red Wizard. You each place magical crystals (towers) on your side of an 8×8 mystical grid, then take turns casting spells to destroy each other's crystals.
++
++Difficulty Choices
++Apprentice (Easy)
++Grid: 6×6 (smaller, simpler)
++
++Crystals: 3 each
++
++AI: Attacks randomly, slower reaction
++
++Time: 60 seconds for placement
++
++Hints: Glowing border shows nearby enemy crystals
++
++Power: You get +1 extra spell after setup
++
++Mage (Medium)
++Grid: 8×8 (standard)
++
++Crystals: 4 each
++
++AI: Remembers misses, strategic targeting
++
++Time: 45 seconds for placement
++
++No hints
++
++Even match
++
++Archmage (Hard)
++Grid: 10×10 (larger, more complex)
++
++Crystals: 5 each
++
++AI: Advanced logic, patterns your moves
++
++Time: 30 seconds for placement
++
++Challenge: Fog of war (enemy grid partially hidden)
++
++Disadvantage: AI gets first attack
++
++Background Visuals
++Blue Wizard Tower (Your Side - Left Grid)
++A tall, elegant blue stone tower against twilight sky
++
++Glowing blue runes on tower walls
++
++Blue magical energy flowing upward
++
++Soft blue light illuminating the grid below
++
++Floating spellbooks and blue orbs around tower
++
++Misty blue atmosphere
++
++Red Wizard Tower (AI Side - Right Grid)
++A foreboding red stone tower against darkening sky
++
++Fiery red runes pulsing on tower walls
++
++Red magical flames flickering upward
++
++Reddish glow on the grid below
++
++Floating skulls and red crystals around tower
++
++Smoky red atmosphere
++
++Battlefield Between Towers
++Mystical grid floats between the towers
++
++Grid lines glow with magical energy
++
++Occasional magical particles floating across
++
++Energy crackles between towers
++
++Dark, starry night sky above
++
++Grid Design
++Each square shimmers with magical energy
++
++Blue tint on your grid side
++
++Red tint on enemy grid side
++
++Glowing coordinate markers (runic letters and numbers)
++
++Spell impact effects: Blue sparks (miss), Red explosions (hit)
++
++Game Flow with Theme
++Setup Ritual: Place your magical crystals on your sanctum grid
++
++Duel Phase: Alternate casting spells (attacks) across the battlefield
++
++Victory: When one wizard's crystals are all shattered, their tower dims
++
++Magical Elements
++Crystals: Glowing gem-like towers that pulse with energy
++
++Spells: Shooting star effects when attacking
++
++Hits: Crystal shatter with colorful particle explosion
++
++Misses: Magic dissipates in sparkles
++
++Victory: Winning tower glows brightly, losing tower fades
+
+# 2025-12-03 07:38:44.797447
++A magical duel where two wizards battle from their towers. You control the Blue Wizard, and an AI controls the Red Wizard. You each place magical crystals (towers) on your side of an 8×8 mystical grid, then take turns casting spells to destroy each other's crystals.
++
++Difficulty Choices
++Apprentice (Easy)
++Grid: 6×6 (smaller, simpler)
++
++Crystals: 3 each
++
++AI: Attacks randomly, slower reaction
++
++Time: 60 seconds for placement
++
++Hints: Glowing border shows nearby enemy crystals
++
++Power: You get +1 extra spell after setup
++
++Mage (Medium)
++Grid: 8×8 (standard)
++
++Crystals: 4 each
++
++AI: Remembers misses, strategic targeting
++
++Time: 45 seconds for placement
++
++No hints
++
++Even match
++
++Archmage (Hard)
++Grid: 10×10 (larger, more complex)
++
++Crystals: 5 each
++
++AI: Advanced logic, patterns your moves
++
++Time: 30 seconds for placement
++
++Challenge: Fog of war (enemy grid partially hidden)
++
++Disadvantage: AI gets first attack
++
++Background Visuals
++Blue Wizard Tower (Your Side - Left Grid)
++A tall, elegant blue stone tower against twilight sky
++
++Glowing blue runes on tower walls
++
++Blue magical energy flowing upward
++
++Soft blue light illuminating the grid below
++
++Floating spellbooks and blue orbs around tower
++
++Misty blue atmosphere
++
++Red Wizard Tower (AI Side - Right Grid)
++A foreboding red stone tower against darkening sky
++
++Fiery red runes pulsing on tower walls
++
++Red magical flames flickering upward
++
++Reddish glow on the grid below
++
++Floating skulls and red crystals around tower
++
++Smoky red atmosphere
++
++Battlefield Between Towers
++Mystical grid floats between the towers
++
++Grid lines glow with magical energy
++
++Occasional magical particles floating across
++
++Energy crackles between towers
++
++Dark, starry night sky above
++
++Grid Design
++Each square shimmers with magical energy
++
++Blue tint on your grid side
++
++Red tint on enemy grid side
++
++Glowing coordinate markers (runic letters and numbers)
++
++Spell impact effects: Blue sparks (miss), Red explosions (hit)
++
++Game Flow with Theme
++Setup Ritual: Place your magical crystals on your sanctum grid
++
++Duel Phase: Alternate casting spells (attacks) across the battlefield
++
++Victory: When one wizard's crystals are all shattered, their tower dims
++
++Magical Elements
++Crystals: Glowing gem-like towers that pulse with energy
++
++Spells: Shooting star effects when attacking
++
++Hits: Crystal shatter with colorful particle explosion
++
++Misses: Magic dissipates in sparkles
++
++Victory: Winning tower glows brightly, losing tower fades
