@@ -15,7 +15,7 @@ export default function BattleGridGame() {
   const [playerGrid, setPlayerGrid] = useState<CellState[]>(Array(GRID_SIZE * GRID_SIZE).fill("empty"));
   const [aiGrid, setAiGrid] = useState<CellState[]>(Array(GRID_SIZE * GRID_SIZE).fill("empty"));
   const [turn, setTurn] = useState<number>(0);
-  const [status, setStatus] = useState<string>("Place your 4 towers");
+  const [status, setStatus] = useState<string>("Place your crystals on the sanctum grid");
   const aiTurnTimer = useRef<NodeJS.Timeout | null>(null);
 
   // Helper to convert row/col to index
@@ -57,19 +57,19 @@ export default function BattleGridGame() {
     if (aiTowers.includes(idx)) {
       newGrid[idx] = "hit";
       setAiTowers(aiTowers.filter((t) => t !== idx));
-      setStatus("Hit! You destroyed an AI tower.");
+      setStatus("Hit! You shattered an enemy crystal.");
     } else {
       newGrid[idx] = "miss";
-      setStatus("Missed.");
+      setStatus("Missed! The spell dissipates.");
     }
     setAiGrid(newGrid);
     setTurn(turn + 1);
     // Check win
     if (aiTowers.length === 1 && aiTowers.includes(idx)) {
-      setStatus("You win! All AI towers destroyed.");
+      setStatus("You win! All enemy crystals shattered.");
       setPhase("finished");
     } else if (turn + 1 >= TOTAL_TURNS) {
-      setStatus("Turn limit reached. Game over.");
+      setStatus("Turn limit reached. The duel ends in a draw.");
       setPhase("finished");
     } else {
       // AI turn after delay
@@ -85,7 +85,7 @@ export default function BattleGridGame() {
       .map((cell, idx) => (cell === "player" || cell === "empty" ? idx : -1))
       .filter((idx) => idx !== -1);
     if (available.length === 0) {
-      setStatus("AI has no targets. You win!");
+      setStatus("AI has no targets. You win the duel!");
       setPhase("finished");
       return;
     }
@@ -94,16 +94,16 @@ export default function BattleGridGame() {
     if (playerTowers.includes(idx)) {
       newGrid[idx] = "destroyed";
       setPlayerTowers(playerTowers.filter((t) => t !== idx));
-      setStatus("AI destroyed one of your towers!");
+      setStatus("AI shattered one of your crystals!");
     } else {
       newGrid[idx] = "miss";
-      setStatus("AI missed.");
+      setStatus("AI missed! The spell fizzles.");
     }
     setPlayerGrid(newGrid);
     setTurn(turn + 1);
     // Check loss
     if (playerTowers.length === 1 && playerTowers.includes(idx)) {
-      setStatus("You lose! All your towers destroyed.");
+      setStatus("You lose! All your crystals shattered.");
       setPhase("finished");
     } else if (turn + 1 >= TOTAL_TURNS) {
       setStatus("Turn limit reached. Game over.");
