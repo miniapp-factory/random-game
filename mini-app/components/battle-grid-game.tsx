@@ -9,7 +9,7 @@ const TOTAL_TURNS = 30;
 const TOWER_COUNT = 4;
 
 export default function BattleGridGame() {
-  const [phase, setPhase] = useState<"setup" | "battle">("setup");
+  const [phase, setPhase] = useState<"setup" | "battle" | "finished">("setup");
   const [playerTowers, setPlayerTowers] = useState<number[]>([]);
   const [aiTowers, setAiTowers] = useState<number[]>([]);
   const [playerGrid, setPlayerGrid] = useState<CellState[]>(Array(GRID_SIZE * GRID_SIZE).fill("empty"));
