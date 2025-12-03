@@ -730,3 +730,189 @@
 
 # 2025-12-03 10:40:50.091541
 +why remove the difficulties. i just said remove the ai timer not the difficulties. and remove the how to help display and bring back the how to play pop up
+
+# 2025-12-03 10:50:57.943584
++now
++"Add difficulty settings to the existing wizard duel game."
++
++Difficulties to add:
++
++Easy Mode:
++
++Grid: 6×6
++
++Crystals: 3 each
++
++AI: Attacks random squares
++
++Help: Nearby enemy squares glow when hovering
++
++Time: 60 seconds to place crystals
++
++Medium Mode:
++
++Grid: 8×8
++
++Crystals: 4 each
++
++AI: Avoids repeating attacks in same area
++
++Time: 45 seconds to place crystals
++
++Hard Mode:
++
++Grid: 10×10
++
++Crystals: 5 each
++
++AI: Attacks strategically, remembers patterns
++
++Challenge: Can only see part of enemy grid
++
++Time: 30 seconds to place crystals
++
++How to implement:
++
++Add 3 buttons at top: "Easy" "Medium" "Hard"
++
++When clicked, reset game with new grid size
++
++Adjust crystal count for player and AI
++
++Change AI behavior based on difficulty
++
++Reset everything cleanly
++
++with how to play 
++Implementation:
++
++Add a "How to Play" button next to the difficulty buttons
++
++When clicked, show a popup with these instructions:
++
++How to Play Wizard Duel:
++
++Phase 1: Place Your Crystals
++
++Click empty squares on your grid (left side) to place crystals
++
++You have [time] seconds to place [number] crystals
++
++Crystals will be hidden once battle begins
++
++Phase 2: Attack Enemy
++
++Click squares on enemy grid (right side) to attack
++
++HIT = Red square (destroyed enemy crystal)
++
++MISS = Gray square (empty)
++
++Enemy will attack you after each turn
++
++Win: Destroy all enemy crystals before they destroy yours
++
++Difficulty Levels:
++
++Easy: 6×6 grid, 3 crystals, AI attacks randomly
++
++Medium: 8×8 grid, 4 crystals, AI smarter
++
++Hard: 10×10 grid, 5 crystals, AI very smart
++
++Add an "X" button to close the popup
++
++Style the popup with a semi-transparent background overlay
+
+# 2025-12-03 10:50:57.943998
++now
++"Add difficulty settings to the existing wizard duel game."
++
++Difficulties to add:
++
++Easy Mode:
++
++Grid: 6×6
++
++Crystals: 3 each
++
++AI: Attacks random squares
++
++Help: Nearby enemy squares glow when hovering
++
++Time: 60 seconds to place crystals
++
++Medium Mode:
++
++Grid: 8×8
++
++Crystals: 4 each
++
++AI: Avoids repeating attacks in same area
++
++Time: 45 seconds to place crystals
++
++Hard Mode:
++
++Grid: 10×10
++
++Crystals: 5 each
++
++AI: Attacks strategically, remembers patterns
++
++Challenge: Can only see part of enemy grid
++
++Time: 30 seconds to place crystals
++
++How to implement:
++
++Add 3 buttons at top: "Easy" "Medium" "Hard"
++
++When clicked, reset game with new grid size
++
++Adjust crystal count for player and AI
++
++Change AI behavior based on difficulty
++
++Reset everything cleanly
++
++with how to play 
++Implementation:
++
++Add a "How to Play" button next to the difficulty buttons
++
++When clicked, show a popup with these instructions:
++
++How to Play Wizard Duel:
++
++Phase 1: Place Your Crystals
++
++Click empty squares on your grid (left side) to place crystals
++
++You have [time] seconds to place [number] crystals
++
++Crystals will be hidden once battle begins
++
++Phase 2: Attack Enemy
++
++Click squares on enemy grid (right side) to attack
++
++HIT = Red square (destroyed enemy crystal)
++
++MISS = Gray square (empty)
++
++Enemy will attack you after each turn
++
++Win: Destroy all enemy crystals before they destroy yours
++
++Difficulty Levels:
++
++Easy: 6×6 grid, 3 crystals, AI attacks randomly
++
++Medium: 8×8 grid, 4 crystals, AI smarter
++
++Hard: 10×10 grid, 5 crystals, AI very smart
++
++Add an "X" button to close the popup
++
++Style the popup with a semi-transparent background overlay
