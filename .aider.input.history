@@ -528,3 +528,109 @@
 # 2025-12-03 08:37:40.064114
 +make the fonts be white and put a how to play description. like what to do for the game to start and what do you need to do for you to win.
 +
+
+# 2025-12-03 08:56:53.020508
++"Add difficulty settings to the existing wizard duel game."
++
++Difficulties to add:
++
++Easy Mode:
++
++Grid: 6×6
++
++Crystals: 3 each
++
++AI: Attacks random squares
++
++Help: Nearby enemy squares glow when hovering
++
++Time: 60 seconds to place crystals
++
++Medium Mode:
++
++Grid: 8×8
++
++Crystals: 4 each
++
++AI: Avoids repeating attacks in same area
++
++Time: 45 seconds to place crystals
++
++Hard Mode:
++
++Grid: 10×10
++
++Crystals: 5 each
++
++AI: Attacks strategically, remembers patterns
++
++Challenge: Can only see part of enemy grid
++
++Time: 30 seconds to place crystals
++
++How to implement:
++
++Add 3 buttons at top: "Easy" "Medium" "Hard"
++
++When clicked, reset game with new grid size
++
++Adjust crystal count for player and AI
++
++Change AI behavior based on difficulty
++
++Update timer for placement phase
++
++Reset everything cleanly
+
+# 2025-12-03 08:56:53.022901
++"Add difficulty settings to the existing wizard duel game."
++
++Difficulties to add:
++
++Easy Mode:
++
++Grid: 6×6
++
++Crystals: 3 each
++
++AI: Attacks random squares
++
++Help: Nearby enemy squares glow when hovering
++
++Time: 60 seconds to place crystals
++
++Medium Mode:
++
++Grid: 8×8
++
++Crystals: 4 each
++
++AI: Avoids repeating attacks in same area
++
++Time: 45 seconds to place crystals
++
++Hard Mode:
++
++Grid: 10×10
++
++Crystals: 5 each
++
++AI: Attacks strategically, remembers patterns
++
++Challenge: Can only see part of enemy grid
++
++Time: 30 seconds to place crystals
++
++How to implement:
++
++Add 3 buttons at top: "Easy" "Medium" "Hard"
++
++When clicked, reset game with new grid size
++
++Adjust crystal count for player and AI
++
++Change AI behavior based on difficulty
++
++Update timer for placement phase
++
++Reset everything cleanly
