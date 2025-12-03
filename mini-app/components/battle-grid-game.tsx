@@ -5,9 +5,9 @@ import Background from "@/components/background";
 
 type CellState = "empty" | "player" | "ai" | "hit" | "miss" | "destroyed";
 
-const GRID_SIZE = 6; // will be overridden by difficulty settings
-const TOTAL_TURNS = 30; // will be overridden by difficulty settings
-const TOWER_COUNT = 3; // will be overridden by difficulty settings
+let GRID_SIZE = 6; // will be overridden by difficulty settings
+let TOTAL_TURNS = 30; // will be overridden by difficulty settings
+let TOWER_COUNT = 3; // will be overridden by difficulty settings
 
 const crystalColors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"];
 export default function BattleGridGame() {
@@ -122,6 +122,26 @@ export default function BattleGridGame() {
       setPhase("finished");
     }
   };
+  const setDifficultyAndReset = (level: "easy" | "medium" | "hard") => {
+    const newGridSize = level === "easy" ? 6 : level === "medium" ? 8 : 10;
+    const newTowerCount = level === "easy" ? 3 : level === "medium" ? 4 : 5;
+    const newTotalTurns = level === "easy" ? 30 : level === "medium" ? 30 : 30;
+    const newPlacementTime = level === "easy" ? 60 : level === "medium" ? 45 : 30;
+    setDifficulty(level);
+    setPhase("setup");
+    setPlayerTowers([]);
+    setAiTowers([]);
+    setPlayerGrid(Array(newGridSize * newGridSize).fill("empty"));
+    setAiGrid(Array(newGridSize * newGridSize).fill("empty"));
+    setTurn(0);
+    setStatus("Place your crystals on the sanctum grid");
+    // Update constants
+    GRID_SIZE = newGridSize;
+    TOWER_COUNT = newTowerCount;
+    TOTAL_TURNS = newTotalTurns;
+    // Start placement timer
+    startPlacementTimer(newPlacementTime);
+  };
 
   // Restart game
   const restart = () => {
@@ -193,6 +213,11 @@ export default function BattleGridGame() {
       <Background />
       <div className="relative flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold">Battle Grid Game</h1>
+      <div className="flex gap-4 mb-4">
+        <Button onClick={() => setDifficultyAndReset('easy')}>Easy</Button>
+        <Button onClick={() => setDifficultyAndReset('medium')}>Medium</Button>
+        <Button onClick={() => setDifficultyAndReset('hard')}>Hard</Button>
+      </div>
       <p>{status}</p>
       <div className="text-sm mt-2">
         <h2 className="font-semibold mb-1">How to Play</h2>
