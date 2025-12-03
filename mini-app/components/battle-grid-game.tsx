@@ -249,7 +249,7 @@ export default function BattleGridGame() {
         <span>Turn: {turn}</span>
       </div>
       <Modal isOpen={showHowTo} onClose={() => setShowHowTo(false)}>
-        <div className="p-4 space-y-4">
+        <div className="p-4 space-y-4 text-black">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">How to Play Wizard Duel</h2>
             <Button variant="ghost" onClick={() => setShowHowTo(false)}>X</Button>
