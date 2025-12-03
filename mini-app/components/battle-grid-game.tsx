@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Background from "@/components/background";
-import Background from "@/components/background";
 
 type CellState = "empty" | "player" | "ai" | "hit" | "miss" | "destroyed";
 
