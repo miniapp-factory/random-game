@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import Background from "@/components/background";
 
 type CellState = "empty" | "player" | "ai" | "hit" | "miss" | "destroyed";
 
@@ -174,7 +175,8 @@ export default function BattleGridGame() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <Background />
+    <div className="relative flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold">Battle Grid Game</h1>
       <p>{status}</p>
       <div className="flex gap-8">
