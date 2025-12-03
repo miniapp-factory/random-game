@@ -175,8 +175,9 @@ export default function BattleGridGame() {
   };
 
   return (
-    <Background />
-    <div className="relative flex flex-col items-center gap-4">
+    <>
+      <Background />
+      <div className="relative flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold">Battle Grid Game</h1>
       <p>{status}</p>
       <div className="flex gap-8">
@@ -194,5 +195,6 @@ export default function BattleGridGame() {
         <span>Turn: {turn}</span>
       </div>
     </div>
+    </>
   );
 }
