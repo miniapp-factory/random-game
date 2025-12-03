@@ -20,6 +20,7 @@ export default function BattleGridGame() {
   const [aiGrid, setAiGrid] = useState<CellState[]>(Array(GRID_SIZE * GRID_SIZE).fill("empty"));
   const [turn, setTurn] = useState<number>(0);
   const [status, setStatus] = useState<string>("Place your crystals on the sanctum grid");
+  const [aiTimer, setAiTimer] = useState<number>(0);
   const [showHowTo, setShowHowTo] = useState<boolean>(false);
   const aiTurnTimer = useRef<NodeJS.Timeout | null>(null);
 
@@ -115,6 +116,21 @@ export default function BattleGridGame() {
     }
     setPlayerGrid(newGrid);
     setTurn(turn + 1);
+    // Start AI thinking timer before next attack
+    setAiTimer(5);
+    const timer = setInterval(() => {
+      setAiTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          // After thinking, perform next attack if game not finished
+          if (phase === "battle") {
+            aiAttack();
+          }
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
     // Check loss
     if (playerTowers.length === 0) {
       setStatus("You lose! All your crystals shattered.");
@@ -244,7 +260,7 @@ export default function BattleGridGame() {
           </div>
         </div>
       </Modal>
-      <p>{status}</p>
+      <p>{status} {aiTimer > 0 && <span className="ml-2 text-gray-500">(AI thinking: {aiTimer}s)</span>}</p>
       <div className="text-sm mt-2">
         <h2 className="font-semibold mb-1">How to Play</h2>
         <ul className="list-disc list-inside space-y-1">

@@ -30,7 +30,7 @@ export default function Modal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg shadow-lg max-w-lg w-full"
+        className="bg-white rounded-lg shadow-lg max-w-lg w-full text-black"
         onClick={(e) => e.stopPropagation()}
       >
         {children}
