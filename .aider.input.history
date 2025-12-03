@@ -718,3 +718,9 @@
 
 # 2025-12-03 09:44:37.638345
 +make sure the fonts for the how to play is black so players can see it. put a timer on how long will the player and ai can think before attacking so they don't wait for too long
+
+# 2025-12-03 10:26:26.350742
++remove the timer for the ai because its making the application not playable. just return it back to normal. remove the how to play display so it can be nice for the display
+
+# 2025-12-03 10:26:26.351682
++remove the timer for the ai because its making the application not playable. just return it back to normal. remove the how to play display so it can be nice for the display
