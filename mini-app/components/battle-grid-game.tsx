@@ -139,8 +139,6 @@ export default function BattleGridGame() {
     GRID_SIZE = newGridSize;
     TOWER_COUNT = newTowerCount;
     TOTAL_TURNS = newTotalTurns;
-    // Start placement timer
-    startPlacementTimer(newPlacementTime);
   };
 
   // Restart game
@@ -200,7 +198,6 @@ export default function BattleGridGame() {
       for (let c = 0; c < GRID_SIZE; c++) {
         const idx = rcToIdx(r, c);
         const cell = grid[idx];
-        const displayCell = difficulty === "hard" && cell === "ai" ? "empty" : cell;
         cells.push(renderCell(grid, idx, onClick));
       }
       rows.push(<tr key={r}>{cells}</tr>);
