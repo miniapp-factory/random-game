@@ -986,3 +986,79 @@
 +After clicking skill, follow on-screen instructions for targeting.
 +
 +Only one skill can be used per turn.
+
+# 2025-12-07 14:47:06.083677
++change the how to play message and use this
++How to Play Wizard Duel
++
++Phase 1: Place Your Crystals
++Click empty squares on your grid (left side) to place crystals.
++You have 60 seconds to place 3 crystals.
++Crystals will be hidden once battle begins.
++
++Phase 2: Attack Enemy
++Click squares on enemy grid (right side) to attack.
++HIT = Red square (destroyed enemy crystal)
++MISS = Gray square (empty)
++Enemy will attack you after each turn.
++
++Win: Destroy all enemy crystals before they destroy yours.
++
++⚠️ Notice about Skills:
++
++In Medium and Hard modes, both you and the AI gain powerful skills
++
++Skills are black icons on the left side – click to activate
++
++Each skill has a cooldown (turns before reuse)
++
++Easy mode has no skills – only basic attacks
++
++Skills include: Fireball, Meteor Strike, and Star Ray – each with unique area effects!
++
++make the fireball to horizontal attacks. and make sure that it will be attack on where the player wants to attack.
++
++make all of the skills name color be black not white.
++
++Game End
++When you destroy all enemy crystals: Victory Popup appears with celebration message!
++When AI destroys all your crystals: Defeat Message appears.
++If no one wins in 30 turns: Draw is declared.
+
+# 2025-12-07 14:47:06.084213
++change the how to play message and use this
++How to Play Wizard Duel
++
++Phase 1: Place Your Crystals
++Click empty squares on your grid (left side) to place crystals.
++You have 60 seconds to place 3 crystals.
++Crystals will be hidden once battle begins.
++
++Phase 2: Attack Enemy
++Click squares on enemy grid (right side) to attack.
++HIT = Red square (destroyed enemy crystal)
++MISS = Gray square (empty)
++Enemy will attack you after each turn.
++
++Win: Destroy all enemy crystals before they destroy yours.
++
++⚠️ Notice about Skills:
++
++In Medium and Hard modes, both you and the AI gain powerful skills
++
++Skills are black icons on the left side – click to activate
++
++Each skill has a cooldown (turns before reuse)
++
++Easy mode has no skills – only basic attacks
++
++Skills include: Fireball, Meteor Strike, and Star Ray – each with unique area effects!
++
++make the fireball to horizontal attacks. and make sure that it will be attack on where the player wants to attack.
++
++make all of the skills name color be black not white.
++
++Game End
++When you destroy all enemy crystals: Victory Popup appears with celebration message!
++When AI destroys all your crystals: Defeat Message appears.
++If no one wins in 30 turns: Draw is declared.
