@@ -96,7 +96,7 @@ export default function BattleGridGame() {
         if (aiTowers.length === 0) {
           setStatus("You win! All enemy crystals shattered.");
           setPhase("finished");
-          setEndMessage("Victory! All enemy crystals shattered.");
+          setEndMessage("You have conquered the red kingdom.");
           setShowEndModal(true);
         } else if (turn + 1 >= TOTAL_TURNS) {
           setStatus("Turn limit reached. The duel ends in a draw.");
@@ -127,7 +127,7 @@ export default function BattleGridGame() {
     if (aiTowers.length === 0) {
       setStatus("You win! All enemy crystals shattered.");
       setPhase("finished");
-      setEndMessage("Victory! All enemy crystals shattered.");
+      setEndMessage("You have conquered the red kingdom.");
       setShowEndModal(true);
     } else if (turn + 1 >= TOTAL_TURNS) {
       setStatus("Turn limit reached. The duel ends in a draw.");
@@ -176,7 +176,7 @@ export default function BattleGridGame() {
     if (playerTowers.length === 0) {
       setStatus("You lose! All your crystals shattered.");
       setPhase("finished");
-      setEndMessage("Defeat! All your crystals shattered.");
+      setEndMessage("You lost your kingdom.");
       setShowEndModal(true);
     } else if (turn + 1 >= TOTAL_TURNS) {
       setStatus("Turn limit reached. Game over.");
@@ -376,10 +376,6 @@ export default function BattleGridGame() {
             <p>Each skill has a cooldown (turns before reuse)</p>
             <p>Easy mode has no skills – only basic attacks</p>
             <p>Skills include: Fireball, Meteor Strike, and Star Ray – each with unique area effects!</p>
-            <h3 className="font-semibold">Game End</h3>
-            <p>When you destroy all enemy crystals: Victory Popup appears with celebration message!</p>
-            <p>When AI destroys all your crystals: Defeat Message appears.</p>
-            <p>If no one wins in 30 turns: Draw is declared.</p>
           </div>
         </div>
       </Modal>
