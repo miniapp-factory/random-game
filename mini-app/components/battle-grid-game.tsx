@@ -127,9 +127,13 @@ export default function BattleGridGame() {
     if (aiTowers.length === 0) {
       setStatus("You win! All enemy crystals shattered.");
       setPhase("finished");
+      setEndMessage("Victory! All enemy crystals shattered.");
+      setShowEndModal(true);
     } else if (turn + 1 >= TOTAL_TURNS) {
       setStatus("Turn limit reached. The duel ends in a draw.");
       setPhase("finished");
+      setEndMessage("Draw! No one wins in 30 turns.");
+      setShowEndModal(true);
     } else {
       // AI turn after delay
       aiAttack();
