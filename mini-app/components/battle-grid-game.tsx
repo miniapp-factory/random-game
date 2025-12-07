@@ -21,6 +21,8 @@ export default function BattleGridGame() {
   const [turn, setTurn] = useState<number>(0);
   const [status, setStatus] = useState<string>("Place your crystals on the sanctum grid");
     const [showHowTo, setShowHowTo] = useState<boolean>(false);
+    const [showEndModal, setShowEndModal] = useState<boolean>(false);
+    const [endMessage, setEndMessage] = useState<string>("");
     const [placementTime, setPlacementTime] = useState<number>(60);
     const [placementTimer, setPlacementTimer] = useState<number>(60);
     const [lastAttackIdx, setLastAttackIdx] = useState<number | null>(null);
@@ -71,7 +73,11 @@ export default function BattleGridGame() {
       const newGrid = [...aiGrid];
       const col = idx % GRID_SIZE;
       if (selectedSkill === "fireball") {
-        const indices = [col, col + GRID_SIZE];
+        const row = Math.floor(idx / GRID_SIZE);
+        const indices = [row * GRID_SIZE + (idx % GRID_SIZE)];
+        if (idx % GRID_SIZE < GRID_SIZE - 1) {
+          indices.push(row * GRID_SIZE + (idx % GRID_SIZE + 1));
+        }
         indices.forEach((i) => {
           if (aiTowers.includes(i)) {
             newGrid[i] = "hit";
@@ -90,9 +96,13 @@ export default function BattleGridGame() {
         if (aiTowers.length === 0) {
           setStatus("You win! All enemy crystals shattered.");
           setPhase("finished");
+          setEndMessage("Victory! All enemy crystals shattered.");
+          setShowEndModal(true);
         } else if (turn + 1 >= TOTAL_TURNS) {
           setStatus("Turn limit reached. The duel ends in a draw.");
           setPhase("finished");
+          setEndMessage("Draw! No one wins in 30 turns.");
+          setShowEndModal(true);
         } else {
           aiAttack();
         }
@@ -162,9 +172,13 @@ export default function BattleGridGame() {
     if (playerTowers.length === 0) {
       setStatus("You lose! All your crystals shattered.");
       setPhase("finished");
+      setEndMessage("Defeat! All your crystals shattered.");
+      setShowEndModal(true);
     } else if (turn + 1 >= TOTAL_TURNS) {
       setStatus("Turn limit reached. Game over.");
       setPhase("finished");
+      setEndMessage("Draw! No one wins in 30 turns.");
+      setShowEndModal(true);
     }
   };
   const setDifficultyAndReset = (level: "easy" | "medium" | "hard") => {
@@ -284,6 +298,7 @@ export default function BattleGridGame() {
         </div>
         <div className="flex gap-4 mb-4">
           <Button
+            className="text-black"
             variant={selectedSkill === "fireball" ? "default" : "outline"}
             disabled={skillCooldowns.fireball > 0}
             onClick={() => {
@@ -294,6 +309,7 @@ export default function BattleGridGame() {
             Fireball {skillCooldowns.fireball > 0 && `(${skillCooldowns.fireball})`}
           </Button>
           <Button
+            className="text-black"
             variant={selectedSkill === "meteor" ? "default" : "outline"}
             disabled={skillCooldowns.meteor > 0 || difficulty === "easy"}
             onClick={() => {
@@ -304,6 +320,7 @@ export default function BattleGridGame() {
             Meteor {skillCooldowns.meteor > 0 && `(${skillCooldowns.meteor})`}
           </Button>
           <Button
+            className="text-black"
             variant={selectedSkill === "star" ? "default" : "outline"}
             disabled={skillCooldowns.star > 0 || difficulty === "easy"}
             onClick={() => {
