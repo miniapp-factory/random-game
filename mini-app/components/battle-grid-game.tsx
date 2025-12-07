@@ -358,7 +358,7 @@ export default function BattleGridGame() {
           <div className="space-y-2">
             <h3 className="font-semibold">Phase 1: Place Your Crystals</h3>
             <p>Click empty squares on your grid (left side) to place crystals.</p>
-            <p>You have <strong>{placementTime}</strong> seconds to place <strong>{TOWER_COUNT}</strong> crystals.</p>
+            <p>You have 60 seconds to place 3 crystals.</p>
             <p>Crystals will be hidden once battle begins.</p>
             <h3 className="font-semibold">Phase 2: Attack Enemy</h3>
             <p>Click squares on enemy grid (right side) to attack.</p>
@@ -366,13 +366,26 @@ export default function BattleGridGame() {
             <p>MISS = Gray square (empty)</p>
             <p>Enemy will attack you after each turn.</p>
             <p>Win: Destroy all enemy crystals before they destroy yours.</p>
-            <h3 className="font-semibold">Difficulty Levels</h3>
-            <ul className="list-disc list-inside">
-              <li>Easy: 6×6 grid, 3 crystals, AI attacks randomly</li>
-              <li>Medium: 8×8 grid, 4 crystals, AI smarter</li>
-              <li>Hard: 10×10 grid, 5 crystals, AI very smart</li>
-            </ul>
+            <h3 className="font-semibold">⚠️ Notice about Skills:</h3>
+            <p>In Medium and Hard modes, both you and the AI gain powerful skills</p>
+            <p>Skills are black icons on the left side – click to activate</p>
+            <p>Each skill has a cooldown (turns before reuse)</p>
+            <p>Easy mode has no skills – only basic attacks</p>
+            <p>Skills include: Fireball, Meteor Strike, and Star Ray – each with unique area effects!</p>
+            <h3 className="font-semibold">Game End</h3>
+            <p>When you destroy all enemy crystals: Victory Popup appears with celebration message!</p>
+            <p>When AI destroys all your crystals: Defeat Message appears.</p>
+            <p>If no one wins in 30 turns: Draw is declared.</p>
           </div>
+        </div>
+      </Modal>
+      <Modal isOpen={showEndModal} onClose={() => setShowEndModal(false)}>
+        <div className="p-4 space-y-4 text-black">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">Game Over</h2>
+            <Button variant="ghost" onClick={() => setShowEndModal(false)}>X</Button>
+          </div>
+          <p>{endMessage}</p>
         </div>
       </Modal>
     </div>
