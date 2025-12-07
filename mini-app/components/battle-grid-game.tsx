@@ -71,12 +71,12 @@ export default function BattleGridGame() {
     // Skill usage
     if (selectedSkill) {
       const newGrid = [...aiGrid];
+      const row = Math.floor(idx / GRID_SIZE);
       const col = idx % GRID_SIZE;
       if (selectedSkill === "fireball") {
-        const row = Math.floor(idx / GRID_SIZE);
-        const indices = [row * GRID_SIZE + (idx % GRID_SIZE)];
-        if (idx % GRID_SIZE < GRID_SIZE - 1) {
-          indices.push(row * GRID_SIZE + (idx % GRID_SIZE + 1));
+        const indices = [row * GRID_SIZE + col];
+        if (col < GRID_SIZE - 1) {
+          indices.push(row * GRID_SIZE + (col + 1));
         }
         indices.forEach((i) => {
           if (aiTowers.includes(i)) {
@@ -90,6 +90,77 @@ export default function BattleGridGame() {
         });
         setAiGrid(newGrid);
         setSkillCooldowns((prev) => ({ ...prev, fireball: 2 }));
+        setSelectedSkill(null);
+        setTurn(turn + 1);
+        // Check win
+        if (aiTowers.length === 0) {
+          setStatus("You win! All enemy crystals shattered.");
+          setPhase("finished");
+          setEndMessage("You have conquered the red kingdom.");
+          setShowEndModal(true);
+        } else if (turn + 1 >= TOTAL_TURNS) {
+          setStatus("Turn limit reached. The duel ends in a draw.");
+          setPhase("finished");
+          setEndMessage("Draw! No one wins in 30 turns.");
+          setShowEndModal(true);
+        } else {
+          aiAttack();
+        }
+        return;
+      } else if (selectedSkill === "meteor") {
+        const indices = [row * GRID_SIZE + col];
+        if (col < GRID_SIZE - 1) indices.push(row * GRID_SIZE + (col + 1));
+        if (row < GRID_SIZE - 1) indices.push((row + 1) * GRID_SIZE + col);
+        if (row < GRID_SIZE - 1 && col < GRID_SIZE - 1) indices.push((row + 1) * GRID_SIZE + (col + 1));
+        indices.forEach((i) => {
+          if (aiTowers.includes(i)) {
+            newGrid[i] = "hit";
+            setAiTowers(aiTowers.filter((t) => t !== i));
+            setStatus("Meteor hit! Destroyed a crystal.");
+          } else {
+            newGrid[i] = "miss";
+            setStatus("Meteor missed!");
+          }
+        });
+        setAiGrid(newGrid);
+        setSkillCooldowns((prev) => ({ ...prev, meteor: 4 }));
+        setSelectedSkill(null);
+        setTurn(turn + 1);
+        // Check win
+        if (aiTowers.length === 0) {
+          setStatus("You win! All enemy crystals shattered.");
+          setPhase("finished");
+          setEndMessage("You have conquered the red kingdom.");
+          setShowEndModal(true);
+        } else if (turn + 1 >= TOTAL_TURNS) {
+          setStatus("Turn limit reached. The duel ends in a draw.");
+          setPhase("finished");
+          setEndMessage("Draw! No one wins in 30 turns.");
+          setShowEndModal(true);
+        } else {
+          aiAttack();
+        }
+        return;
+      } else if (selectedSkill === "star") {
+        const randomIndices: number[] = [];
+        while (randomIndices.length < 5) {
+          const randIdx = Math.floor(Math.random() * (GRID_SIZE * GRID_SIZE));
+          if (!randomIndices.includes(randIdx)) {
+            randomIndices.push(randIdx);
+          }
+        }
+        randomIndices.forEach((i) => {
+          if (aiTowers.includes(i)) {
+            newGrid[i] = "hit";
+            setAiTowers(aiTowers.filter((t) => t !== i));
+            setStatus("Star Ray hit! Destroyed a crystal.");
+          } else {
+            newGrid[i] = "miss";
+            setStatus("Star Ray missed!");
+          }
+        });
+        setAiGrid(newGrid);
+        setSkillCooldowns((prev) => ({ ...prev, star: 6 }));
         setSelectedSkill(null);
         setTurn(turn + 1);
         // Check win
