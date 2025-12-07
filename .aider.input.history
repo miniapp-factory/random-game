@@ -1062,3 +1062,45 @@
 +When you destroy all enemy crystals: Victory Popup appears with celebration message!
 +When AI destroys all your crystals: Defeat Message appears.
 +If no one wins in 30 turns: Draw is declared.
+
+# 2025-12-07 15:04:12.557016
++remove this in how to play
++Game End
++When you destroy all enemy crystals: Victory Popup appears with celebration message!
++
++When AI destroys all your crystals: Defeat Message appears.
++
++If no one wins in 30 turns: Draw is declared.
++
++make sure that if the player or the ai will destory all of the crystal put a pop up that says you have conqured the red kingdom or if you lose the pop up says you lost your kingdom.
++
++only the fire ball is working for the spells so do this.
++☄️ Meteor Strike (4-turn cooldown) – Click icon, then click any grid square. Destroys that square and the 3 squares around it (2×2 area total).
++
++✨ Star Ray (6-turn cooldown) – Click icon to automatically fire 5 random shots anywhere on enemy grid.
++
++Important: The AI can use these same skills against you! Plan your defense carefully.
++
++Easy mode: No skills, only basic attacks.
++Medium & Hard modes: All three skills are available to both you and the AI.
+
+# 2025-12-07 15:04:12.557359
++remove this in how to play
++Game End
++When you destroy all enemy crystals: Victory Popup appears with celebration message!
++
++When AI destroys all your crystals: Defeat Message appears.
++
++If no one wins in 30 turns: Draw is declared.
++
++make sure that if the player or the ai will destory all of the crystal put a pop up that says you have conqured the red kingdom or if you lose the pop up says you lost your kingdom.
++
++only the fire ball is working for the spells so do this.
++☄️ Meteor Strike (4-turn cooldown) – Click icon, then click any grid square. Destroys that square and the 3 squares around it (2×2 area total).
++
++✨ Star Ray (6-turn cooldown) – Click icon to automatically fire 5 random shots anywhere on enemy grid.
++
++Important: The AI can use these same skills against you! Plan your defense carefully.
++
++Easy mode: No skills, only basic attacks.
++Medium & Hard modes: All three skills are available to both you and the AI.
