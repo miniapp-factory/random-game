@@ -24,6 +24,12 @@ export default function BattleGridGame() {
     const [placementTime, setPlacementTime] = useState<number>(60);
     const [placementTimer, setPlacementTimer] = useState<number>(60);
     const [lastAttackIdx, setLastAttackIdx] = useState<number | null>(null);
+    const [selectedSkill, setSelectedSkill] = useState<"fireball" | "meteor" | "star" | null>(null);
+    const [skillCooldowns, setSkillCooldowns] = useState<Record<string, number>>({
+      fireball: 0,
+      meteor: 0,
+      star: 0,
+    });
 
   // Helper to convert row/col to index
   const rcToIdx = (r: number, c: number) => r * GRID_SIZE + c;
@@ -59,7 +65,43 @@ export default function BattleGridGame() {
 
   // Handle player attack on AI grid
   const handlePlayerAttack = (idx: number) => {
-    if (phase !== "battle" || aiGrid[idx] === "hit" || aiGrid[idx] === "miss" || aiGrid[idx] === "destroyed") return;
+    if (phase !== "battle") return;
+    // Skill usage
+    if (selectedSkill) {
+      const newGrid = [...aiGrid];
+      const col = idx % GRID_SIZE;
+      if (selectedSkill === "fireball") {
+        const indices = [col, col + GRID_SIZE];
+        indices.forEach((i) => {
+          if (aiTowers.includes(i)) {
+            newGrid[i] = "hit";
+            setAiTowers(aiTowers.filter((t) => t !== i));
+            setStatus("Fireball hit! Destroyed a crystal.");
+          } else {
+            newGrid[i] = "miss";
+            setStatus("Fireball missed!");
+          }
+        });
+        setAiGrid(newGrid);
+        setSkillCooldowns((prev) => ({ ...prev, fireball: 2 }));
+        setSelectedSkill(null);
+        setTurn(turn + 1);
+        // Check win
+        if (aiTowers.length === 0) {
+          setStatus("You win! All enemy crystals shattered.");
+          setPhase("finished");
+        } else if (turn + 1 >= TOTAL_TURNS) {
+          setStatus("Turn limit reached. The duel ends in a draw.");
+          setPhase("finished");
+        } else {
+          aiAttack();
+        }
+        return;
+      }
+      // Other skills can be added similarly
+    }
+    // Normal attack
+    if (aiGrid[idx] === "hit" || aiGrid[idx] === "miss" || aiGrid[idx] === "destroyed") return;
     const newGrid = [...aiGrid];
     if (aiTowers.includes(idx)) {
       newGrid[idx] = "hit";
@@ -159,6 +201,16 @@ export default function BattleGridGame() {
     return () => clearTimeout(timer);
   }, [phase, placementTimer, playerTowers.length, TOWER_COUNT]);
 
+  useEffect(() => {
+    if (turn > 0) {
+      setSkillCooldowns((prev) => ({
+        fireball: Math.max(0, prev.fireball - 1),
+        meteor: Math.max(0, prev.meteor - 1),
+        star: Math.max(0, prev.star - 1),
+      }));
+    }
+  }, [turn]);
+
   // Restart game
   const restart = () => {
     setPhase("setup");
@@ -229,6 +281,38 @@ export default function BattleGridGame() {
           <Button onClick={() => setDifficultyAndReset("medium")}>Medium</Button>
           <Button onClick={() => setDifficultyAndReset("hard")}>Hard</Button>
           <Button onClick={() => setShowHowTo(true)}>How to Play</Button>
+        </div>
+        <div className="flex gap-4 mb-4">
+          <Button
+            variant={selectedSkill === "fireball" ? "default" : "outline"}
+            disabled={skillCooldowns.fireball > 0}
+            onClick={() => {
+              setSelectedSkill("fireball");
+              setSkillCooldowns((prev) => ({ ...prev, fireball: 2 }));
+            }}
+          >
+            Fireball {skillCooldowns.fireball > 0 && `(${skillCooldowns.fireball})`}
+          </Button>
+          <Button
+            variant={selectedSkill === "meteor" ? "default" : "outline"}
+            disabled={skillCooldowns.meteor > 0 || difficulty === "easy"}
+            onClick={() => {
+              setSelectedSkill("meteor");
+              setSkillCooldowns((prev) => ({ ...prev, meteor: 4 }));
+            }}
+          >
+            Meteor {skillCooldowns.meteor > 0 && `(${skillCooldowns.meteor})`}
+          </Button>
+          <Button
+            variant={selectedSkill === "star" ? "default" : "outline"}
+            disabled={skillCooldowns.star > 0 || difficulty === "easy"}
+            onClick={() => {
+              setSelectedSkill("star");
+              setSkillCooldowns((prev) => ({ ...prev, star: 6 }));
+            }}
+          >
+            Star Ray {skillCooldowns.star > 0 && `(${skillCooldowns.star})`}
+          </Button>
         </div>
       <h1 className="text-2xl font-bold">Battle Grid Game</h1>
       <p>{status}</p>
