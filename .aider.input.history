@@ -922,3 +922,67 @@
 
 # 2025-12-03 12:00:16.605019
 +make the fonts in the how to play black
+
+# 2025-12-07 14:33:51.555447
++Skill System:
++
++On the left side of the screen, add a clickable Skills Panel with these abilities:
++
++Fireball – Cooldown: 2 turns
++Effect: Clears two vertical squares (choose column).
++Available in: All modes
++How to use: Click Fireball icon, then click any column on enemy grid.
++
++Meteor Strike – Cooldown: 4 turns
++Effect: Destroys a 2×2 square (4 squares total).
++Available in: Medium & Hard only
++How to use: Click Meteor icon, then click where to center the blast.
++
++Star Ray – Cooldown: 6 turns
++Effect: Fires 5 random shots anywhere on enemy grid.
++Available in: Medium & Hard only
++How to use: Click Star Ray icon – shots fire automatically.
++
++UI Rules:
++
++Skills appear as clickable icons on the left side.
++
++When ready: Icon glows (click to select skill).
++
++On cooldown: Icon grayed out with turn counter (ex: "3 turns").
++
++After clicking skill, follow on-screen instructions for targeting.
++
++Only one skill can be used per turn.
+
+# 2025-12-07 14:33:51.555913
++Skill System:
++
++On the left side of the screen, add a clickable Skills Panel with these abilities:
++
++Fireball – Cooldown: 2 turns
++Effect: Clears two vertical squares (choose column).
++Available in: All modes
++How to use: Click Fireball icon, then click any column on enemy grid.
++
++Meteor Strike – Cooldown: 4 turns
++Effect: Destroys a 2×2 square (4 squares total).
++Available in: Medium & Hard only
++How to use: Click Meteor icon, then click where to center the blast.
++
++Star Ray – Cooldown: 6 turns
++Effect: Fires 5 random shots anywhere on enemy grid.
++Available in: Medium & Hard only
++How to use: Click Star Ray icon – shots fire automatically.
++
++UI Rules:
++
++Skills appear as clickable icons on the left side.
++
++When ready: Icon glows (click to select skill).
++
++On cooldown: Icon grayed out with turn counter (ex: "3 turns").
++
++After clicking skill, follow on-screen instructions for targeting.
++
++Only one skill can be used per turn.
